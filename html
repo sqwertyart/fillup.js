@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - 7-Eleven Cotabato</title>
+  <link rel="stylesheet" href="shop.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com" />
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:wght@300;400;700&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet" />
+ 
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html" class="logo">
+          <img src="7E.svg" alt="7-Eleven Logo" class="logo-img">
+          <div class="logo-text">
+            <span>COTABATO CITY</span>
+          </div>
+        </a>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products...">
+        <button id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="shop.html">Shop</a>
+        <a href="order.html">Order</a>
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i>
+          <span id="cart-count" class="cart-count">0</span>
+        </a>
+
+        <!-- Login/Logout -->
+        <a href="login.html" id="loginLink" style="display: none;">
+          <i class="fa-solid fa-user"></i> LOGIN
+        </a>
+        <a href="#" id="logoutLink" style="display: none;">
+          <i class="fa-solid fa-right-from-bracket"></i> LOGOUT
+        </a>
+      </div>
+    </nav>
+
+    <div class="main-container">
+      <!-- Vertical Categories Sidebar -->
+      <aside class="categories-sidebar">
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="#" class="category-item" data-category="All">All Product</a></li>
+          <li><a href="#" class="category-item" data-category="Snacks">Snacks</a></li>
+          <li><a href="#" class="category-item" data-category="Beverages">Beverages</a></li>
+          <li><a href="#" class="category-item" data-category="Health & Beauty">Health & Beauty</a></li>
+          <li><a href="#" class="category-item" data-category="Household">Household</a></li>
+          <li><a href="#" class="category-item" data-category="Meals">Meals</a></li>
+          <li><a href="#" class="category-item" data-category="Ready-to-Eat">Ready-to-Eat</a></li>
+        </ul>
+      </aside>
+  
+      <!-- Product Display Section -->
+      <div class="product-container">
+        <div class="product-header">
+          <h2>Shop Your Favorites</h2>
+          <!-- Sort & Filter Section -->
+          <div class="sort-filter">
+            <div class="sort-dropdown">
+              <label for="sort">Sort by:</label>
+              <select id="sort">
+                <option value="low-to-high">Price: Low to High</option>
+                <option value="high-to-low">Price: High to Low</option>
+                <option value="popularity">Popularity</option>
+                <option value="newest">Newest</option>
+              </select>
+            </div>
+            <div class="filter-options">
+              <label for="price-range">Price Range:</label>
+              <input type="number" id="min-price" placeholder="Min" min="0">
+              <input type="number" id="max-price" placeholder="Max" min="0">
+              <button id="apply-filters">Apply</button>
+            </div>
+          </div>
+        </div>
+
+              <!-- Order Details Modal -->
+      <div id="orderModal" class="modal">
+        <div class="modal-content">
+          <span class="close" id="closeModal">&times;</span>
+          <h2>Customer Information</h2>
+          <form id="orderForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+            <label for="deliveryAddress">Complete Delivery Address:</label>
+            <input type="text" id="deliveryAddress" name="deliveryAddress" placeholder="House/Street/Barangay" required>
+            <p class="note">(Must be in Cotabato City only)</p>
+
+            <label for="storeLocation">Nearest 7-Eleven Location:</label>
+            <select id="storeLocation" name="storeLocation" required>
+              <option value="" disabled selected>Select your nearest store</option>
+              <option value="669R+29C, Don Teodoro V Juliano Ave">669R+29C, Don Teodoro V Juliano Ave</option>
+              <option value="663M+77F, Rosary Heights XI">663M+77F, Rosary Heights XI</option>
+              <option value="567C+8C8, Datu Odin Sinsuat">567C+8C8, Datu Odin Sinsuat</option>
+            </select>
+
+            <h3>Order Details:</h3>
+            <p id="orderDetails"></p>
+            
+            <label>Delivery or Pickup:</label>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="delivery" name="orderOption" value="delivery" required>
+                <label for="delivery">Delivery</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="pickup" name="orderOption" value="pickup" required>
+                <label for="pickup">Pickup</label>
+              </div>
+            </div>
+
+            <label for="paymentMethod">Payment Method:</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+              <option value="" disabled selected>Select payment method</option>
+              <option value="cash">Cash on Delivery</option>
+              <option value="gcash">GCash</option>
+              <option value="maya">PayMaya</option>
+            </select>
+
+             <!-- Contact Number Field (hidden by default) -->
+             <div id="contactNumberField" style="display: none; margin-top: 1rem;">
+              <label for="contactNumber">Contact Number:</label>
+              <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your contact number">
+            </div>
+
+            <div id="onlinePaymentDetails" style="display: none; margin-top: 1rem;">
+              <label for="walletSenderName">Name of Sender:</label>
+              <input type="text" id="walletSenderName" name="walletSenderName" placeholder="Enter sender's name" required>
+            
+              <label for="senderNumber">Sender's Number:</label>
+              <input type="text" id="senderNumber" name="senderNumber" placeholder="Enter sender's number" required>
+            
+              <label for="storeName">Store Name:</label>
+              <input type="text" id="storeName" name="storeName" value="7eleven.cc" readonly>
+            
+              <label for="storeNumber">Store Number:</label>
+              <input type="text" id="storeNumber" name="storeNumber" value="09143143143" readonly>
+            </div>
+            <button type="submit" id="submitOrder">Submit Order</button>
+          </form>
+        </div>
+      </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="product-grid">
+              <!-- Snacks -->
+      <div class="product-card" data-category="Snacks" data-price="20">
+        <img src="Potato.jpg" alt="Chips">
+        <h4>Potato Chips</h4>
+        <p>₱20.00</p>
+        <p class="product-description">Crispy and salty potato chips, perfect for snacking anytime.</p>
+        <p class="product-category">Category: Snacks</p>
+        <label for="flavor">Choose Flavor:</label>
+        <select class="product-flavor" id="flavor">
+          <option value="original">Original</option>
+          <option value="sour-cream">Sour Cream</option>
+          <option value="barbecue">Barbecue</option>
+          <option value="cheese">Cheese</option>
+        </select>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="15">
+        <img src="Tortilla.jpg" alt="Tortilla Chips">
+        <h4>Tortilla Chips</h4>
+        <p>₱15.00</p>
+        <p class="product-description">Crunchy and delicious tortilla chips, perfect with dips.</p>
+        <p class="product-category">Category: Snacks</p>
+        <label for="flavor">Choose Flavor:</label>
+        <select class="product-flavor" id="flavor">
+          <option value="plain">Plain</option>
+          <option value="nacho">Nacho Cheese</option>
+          <option value="spicy">Spicy</option>
+        </select>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="25">
+        <img src="ChocolateBar.jpg" alt="Chocolate Bar">
+        <h4>Chocolate Bar</h4>
+        <p>₱25.00</p>
+        <p class="product-description">Rich and creamy chocolate bar for a sweet treat.</p>
+        <p class="product-category">Category: Snacks</p>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="18">
+        <img src="Gummy.jpg" alt="Gummy Candy">
+        <h4>Gummy Candy</h4>
+        <p>₱18.00</p>
+        <p class="product-description">Fruity and chewy gummy candies in assorted flavors.</p>
+        <p class="product-category">Category: Snacks</p>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="12">
+        <img src="Peanuts.jpg" alt="Roasted Peanuts">
+        <h4>Roasted Peanuts</h4>
+        <p>₱12.00</p>
+        <p class="product-description">Crunchy and salty roasted peanuts, a classic snack.</p>
+        <p class="product-category">Category: Snacks</p>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="22">
+        <img src="Pretzels.jpg" alt="Pretzels">
+        <h4>Pretzels</h4>
+        <p>₱22.00</p>
+        <p class="product-description">Salty and crunchy pretzels, perfect for snacking anytime.</p>
+        <p class="product-category">Category: Snacks</p>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="30">
+        <img src="Popcorn.jpg" alt="Popcorn">
+        <h4>Popcorn</h4>
+        <p>₱30.00</p>
+        <p class="product-description">Light and buttery popcorn, a great movie-time snack.</p>
+        <p class="product-category">Category: Snacks</p>
+        <label for="flavor">Choose Flavor:</label>
+        <select class="product-flavor" id="flavor">
+          <option value="butter">Butter</option>
+          <option value="cheese">Cheese</option>
+          <option value="caramel">Caramel</option>
+        </select>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="28">
+        <img src="Crackers.jpg" alt="Crackers">
+        <h4>Butter Crackers</h4>
+        <p>₱28.00</p>
+        <p class="product-description">Light and crispy crackers with a buttery flavor.</p>
+        <p class="product-category">Category: Snacks</p>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="40">
+        <img src="ChocoCookies.jpg" alt="Chocolate Cookies">
+        <h4>Chocolate Cookies</h4>
+        <p>₱40.00</p>
+        <p class="product-description">Soft-baked cookies loaded with chocolate chips.</p>
+        <p class="product-category">Category: Snacks</p>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+
+      <div class="product-card" data-category="Snacks" data-price="35">
+        <img src="CerealBar.jpg" alt="Cereal Bar">
+        <h4>Cereal Bar</h4>
+        <p>₱35.00</p>
+        <p class="product-description">Healthy cereal bars for a quick and nutritious snack.</p>
+        <p class="product-category">Category: Snacks</p>
+        <div class="product-buttons">
+          <button class="add-to-cart-btn">Add to Cart</button>
+          <button class="buy-btn">Buy</button>
+          <input type="number" class="quantity-input" value="1" min="1">
+        </div>
+      </div>
+         <!-- Beverages -->
+        <div class="product-card" data-category="Beverages" data-price="10">
+          <img src="beverage1.jpg" alt="Soda">
+          <h4>Coca-Cola</h4>
+          <p>₱10.00</p>
+          <p class="product-description">Refreshing carbonated drink with a classic cola flavor.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="8">
+          <img src="beverage2.jpg" alt="Water Bottle">
+          <h4>Mineral Water</h4>
+          <p>₱8.00</p>
+          <p class="product-description">Pure and refreshing bottled mineral water.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="15">
+          <img src="beverage3.jpg" alt="Orange Juice">
+          <h4>Orange Juice</h4>
+          <p>₱15.00</p>
+          <p class="product-description">A refreshing drink made with natural orange flavor.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="20">
+          <img src="beverage4.jpg" alt="Iced Tea">
+          <h4>Iced Tea</h4>
+          <p>₱20.00</p>
+          <p class="product-description">Cool and refreshing iced tea with a hint of lemon.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="25">
+          <img src="beverage5.jpg" alt="Energy Drink">
+          <h4>Energy Drink</h4>
+          <p>₱25.00</p>
+          <p class="product-description">Boost your energy with this powerful energy drink.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="12">
+          <img src="beverage6.jpg" alt="Lemonade">
+          <h4>Lemonade</h4>
+          <p>₱12.00</p>
+          <p class="product-description">Sweet and tangy lemonade, perfect for a hot day.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="18">
+          <img src="beverage7.jpg" alt="Milk Tea">
+          <h4>Milk Tea</h4>
+          <p>₱18.00</p>
+          <p class="product-description">Delicious milk tea with chewy tapioca pearls.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="30">
+          <img src="beverage8.jpg" alt="Chocolate Drink">
+          <h4>Chocolate Drink</h4>
+          <p>₱30.00</p>
+          <p class="product-description">Rich and creamy chocolate drink for all ages.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="10">
+          <img src="beverage9.jpg" alt="Flavored Water">
+          <h4>Flavored Water</h4>
+          <p>₱10.00</p>
+          <p class="product-description">Refreshing water with a hint of fruit flavors.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Beverages" data-price="35">
+          <img src="beverage10.jpg" alt="Cold Brew Coffee">
+          <h4>Cold Brew Coffee</h4>
+          <p>₱35.00</p>
+          <p class="product-description">Smooth and bold cold brew coffee for coffee lovers.</p>
+          <p class="product-category">Category: Beverages</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+          
+          <!-- Health & Beauty -->
+        <div class="product-card" data-category="Health & Beauty" data-price="30">
+          <img src="health1.jpg" alt="Shampoo">
+          <h4>Hair Shampoo</h4>
+          <p>₱30.00</p>
+          <p class="product-description">Nourishing shampoo for silky, smooth, and healthy hair.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="25">
+          <img src="health2.jpg" alt="Toothpaste">
+          <h4>Toothpaste</h4>
+          <p>₱25.00</p>
+          <p class="product-description">Mint-flavored toothpaste for fresh breath and clean teeth.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="40">
+          <img src="facewash.jpg" alt="Face Wash">
+          <h4>Face Wash</h4>
+          <p>₱40.00</p>
+          <p class="product-description">Gentle face wash for a clean and glowing complexion.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="50">
+          <img src="bodylotion.jpg" alt="Body Lotion">
+          <h4>Body Lotion</h4>
+          <p>₱50.00</p>
+          <p class="product-description">Hydrating body lotion for soft and smooth skin.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="35">
+          <img src="deodorant.jpg" alt="Deodorant">
+          <h4>Deodorant</h4>
+          <p>₱35.00</p>
+          <p class="product-description">Long-lasting deodorant to keep you fresh all day.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="20">
+          <img src="soap.jpg" alt="Bath Soap">
+          <h4>Bath Soap</h4>
+          <p>₱20.00</p>
+          <p class="product-description">Refreshing bath soap for a clean and fragrant experience.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="45">
+          <img src="hairoil.jpg" alt="Hair Oil">
+          <h4>Hair Oil</h4>
+          <p>₱45.00</p>
+          <p class="product-description">Nourishing hair oil for thick and shiny hair.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="60">
+          <img src="sunscreen.jpg" alt="Sunscreen Lotion">
+          <h4>Sunscreen Lotion</h4>
+          <p>₱60.00</p>
+          <p class="product-description">SPF 50 sunscreen to protect your skin from harmful UV rays.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="55">
+          <img src="handwash.jpg" alt="Hand Wash">
+          <h4>Hand Wash</h4>
+          <p>₱55.00</p>
+          <p class="product-description">Antibacterial hand wash for effective cleaning.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Health & Beauty" data-price="32">
+          <img src="lipbalm.jpg" alt="Lip Balm">
+          <h4>Lip Balm</h4>
+          <p>₱32.00</p>
+          <p class="product-description">Moisturizing lip balm to keep your lips soft and hydrated.</p>
+          <p class="product-category">Category: Health & Beauty</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <!-- Household -->
+        <div class="product-card" data-category="Household" data-price="20">
+          <img src="dishwashing-liquid.jpg" alt="Dishwashing Liquid">
+          <h4>Dishwashing Liquid</h4>
+          <p>₱20.00</p>
+          <p class="product-description">Effective and gentle dishwashing liquid for sparkling clean dishes.</p>
+          <p class="product-category">Category: Household</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Household" data-price="50">
+          <img src="laundry-detergent.jpg" alt="Laundry Detergent">
+          <h4>Laundry Detergent</h4>
+          <p>₱50.00</p>
+          <p class="product-description">High-efficiency detergent for fresh and clean clothes.</p>
+          <p class="product-category">Category: Household</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Household" data-price="15">
+          <img src="sponges.jpg" alt="Cleaning Sponges">
+          <h4>Cleaning Sponges</h4>
+          <p>₱15.00</p>
+          <p class="product-description">Durable sponges for all your cleaning needs.</p>
+          <p class="product-category">Category: Household</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Household" data-price="100">
+          <img src="trash-bags.jpg" alt="Trash Bags">
+          <h4>Trash Bags</h4>
+          <p>₱100.00</p>
+          <p class="product-description">Strong and durable trash bags for everyday use.</p>
+          <p class="product-category">Category: Household</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+          <!-- Meals -->
+        <div class="product-card" data-category="Meals" data-price="50">
+          <img src="meals1.jpg" alt="Frozen Meal">
+          <h4>Frozen Meal</h4>
+          <p>₱50.00</p>
+          <p class="product-description">Quick and easy ready-to-heat frozen meal.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="40">
+          <img src="meals2.jpg" alt="Cup Noodles">
+          <h4>Cup Noodles</h4>
+          <p>₱40.00</p>
+          <p class="product-description">Instant noodles with delicious seasoning and flavor.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="55">
+          <img src="meals3.jpg" alt="Sandwich">
+          <h4>Ham and Cheese Sandwich</h4>
+          <p>₱55.00</p>
+          <p class="product-description">Freshly made ham and cheese sandwich for a quick meal.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="60">
+          <img src="meals4.jpg" alt="Burger">
+          <h4>Cheeseburger</h4>
+          <p>₱60.00</p>
+          <p class="product-description">Juicy cheeseburger made with fresh ingredients.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="35">
+          <img src="meals5.jpg" alt="Hotdog">
+          <h4>Hotdog Bun</h4>
+          <p>₱35.00</p>
+          <p class="product-description">Soft bun with a juicy hotdog for a quick bite.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="45">
+          <img src="meals6.jpg" alt="Rice Meal">
+          <h4>Chicken Rice Meal</h4>
+          <p>₱45.00</p>
+          <p class="product-description">Steamed rice served with crispy fried chicken.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="50">
+          <img src="meals7.jpg" alt="Pizza Slice">
+          <h4>Pizza Slice</h4>
+          <p>₱50.00</p>
+          <p class="product-description">Cheesy and flavorful pizza slice, perfect for a quick meal.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="65">
+          <img src="meals8.jpg" alt="Pasta">
+          <h4>Spaghetti</h4>
+          <p>₱65.00</p>
+          <p class="product-description">Classic spaghetti with rich tomato sauce and cheese.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="70">
+          <img src="meals9.jpg" alt="Taco">
+          <h4>Beef Taco</h4>
+          <p>₱70.00</p>
+          <p class="product-description">Crispy taco shells filled with seasoned beef and vegetables.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Meals" data-price="55">
+          <img src="meals10.jpg" alt="Rice Bowl">
+          <h4>Beef Teriyaki Rice Bowl</h4>
+          <p>₱55.00</p>
+          <p class="product-description">Savory beef teriyaki served over steamed rice.</p>
+          <p class="product-category">Category: Meals</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+          <!-- Ready-to-Eat -->
+        <div class="product-card" data-category="Ready-to-Eat" data-price="30">
+          <img src="ready1.jpg" alt="Sandwich">
+          <h4>Ham Sandwich</h4>
+          <p>₱30.00</p>
+          <p class="product-description">Freshly made ham sandwich for a quick snack.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="25">
+          <img src="ready2.jpg" alt="Hotdog Bun">
+          <h4>Hotdog Bun</h4>
+          <p>₱25.00</p>
+          <p class="product-description">Soft bun with a juicy hotdog, perfect for a quick bite.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="35">
+          <img src="ready3.jpg" alt="Chicken Wrap">
+          <h4>Chicken Wrap</h4>
+          <p>₱35.00</p>
+          <p class="product-description">Grilled chicken wrapped with fresh vegetables and sauce.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="40">
+          <img src="ready4.jpg" alt="Beef Burger">
+          <h4>Beef Burger</h4>
+          <p>₱40.00</p>
+          <p class="product-description">Juicy beef patty burger with lettuce and tomato.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="50">
+          <img src="ready5.jpg" alt="Pasta">
+          <h4>Baked Macaroni</h4>
+          <p>₱50.00</p>
+          <p class="product-description">Delicious baked macaroni with cheese and tomato sauce.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="60">
+          <img src="ready6.jpg" alt="Pizza Slice">
+          <h4>Pizza Slice</h4>
+          <p>₱60.00</p>
+          <p class="product-description">Cheesy pizza slice with pepperoni and vegetables.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="45">
+          <img src="ready7.jpg" alt="Fried Chicken">
+          <h4>Fried Chicken</h4>
+          <p>₱45.00</p>
+          <p class="product-description">Crispy and golden fried chicken, served warm.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="55">
+          <img src="ready8.jpg" alt="Sushi Roll">
+          <h4>Sushi Roll</h4>
+          <p>₱55.00</p>
+          <p class="product-description">Freshly made sushi rolls with rice, fish, and vegetables.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="20">
+          <img src="ready9.jpg" alt="Onigiri">
+          <h4>Onigiri</h4>
+          <p>₱20.00</p>
+          <p class="product-description">Japanese rice ball snack with a savory filling wrapped in seaweed.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+        <div class="product-card" data-category="Ready-to-Eat" data-price="65">
+          <img src="ready10.jpg" alt="Rice Bowl">
+          <h4>Beef Rice Bowl</h4>
+          <p>₱65.00</p>
+          <p class="product-description">Savory beef served over steamed rice with vegetables.</p>
+          <p class="product-category">Category: Ready-to-Eat</p>
+          <div class="product-buttons">
+            <button class="add-to-cart-btn">Add to Cart</button>
+            <button class="buy-btn">Buy</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+          </div>
+        </div>
+
+  <script src="shop.js"></script>
+</body>
+</html>
