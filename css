@@ -1,0 +1,600 @@
+  /* Default Styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+  /* End of Default Styles */
+
+  /* Container */
+  .container {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Navigation */
+  .navbar {
+    width: 100%;
+    height: 10rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
+    z-index: 300;
+    transition: all 0.5s;
+    background-color: #014421;    
+  }
+  /* cart size code */
+  .navigation a:last-child i {
+    font-size: 3rem;                
+  }
+  .fa-cart-shopping{
+    font-size: 2rem;
+  }
+
+  .sticky.navbar {
+    height: 8rem;
+    background-color: #222222;
+    float: left;
+
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .logo i {
+    font-size: 4rem;
+    -webkit-text-stroke: 0.1rem #fff;
+    color: transparent;
+    margin-right: 1rem;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo-text span:nth-child(1) {
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #fff;
+  }
+
+  .logo-text span:nth-child(2) {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #eee;
+    margin-top: -0.7rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50; /* Dark Blue/Gray */
+  }
+
+  .logo-img {
+    width: 40px;  /* Adjust size */
+    height: auto;
+    margin-right: 10px; /* Space between logo and icon */
+  }
+
+  .logo i {
+    font-size: 30px;
+    color: #27ae60; /* Green */
+    margin-right: 8px;
+  }
+
+  .logo-text {
+    font-family: 'Poppins', sans-serif;
+  }
+
+
+  .navigation a {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: #eee;
+    margin-right: 3rem;
+    letter-spacing: 0.2rem;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .navigation a:hover {
+    color: #FF8C00;
+  }
+
+  .navigation a:nth-child(1) {
+    color: #FF8C00;
+  }
+
+  .navigation a:last-child {
+    font-size: 1.8rem;
+  }
+
+  .navigation a:last-child::after {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #ffc107;
+    border-radius: 50%;
+    position: absolute;
+    top: -1.5rem;
+    left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222;
+    font-size: 1.2rem;
+  }
+  /* End of Navigation */
+
+  /* Search bar */
+  .search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 50px;
+  padding: 0 2rem;
+  height: 6rem; /* make this closer to navbar height */
+  margin-left: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .search-bar input {
+  width: 500px;
+  font-size: 1.6rem;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  height: 100%;
+  border-radius: 50px;
+  }
+
+  .search-bar button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #014421;
+  padding-left: 1rem;
+  }
+
+  /* Logo Section */
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .logo-img {
+    width: 4rem; /* Consistent logo size as index.css */
+    height: auto;
+    margin-right: 1rem;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo-text span:nth-child(1) {
+    font-size: 2rem; /* Match index.css */
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #fff; /* White color for text */
+  }
+
+  .logo-text span:nth-child(2) {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: #eee; /* Slightly dimmer white */
+    margin-top: -0.7rem; /* Fine-tuning spacing */
+  }
+
+  /* Cart Size and Cart count*/
+  .cart-count {
+    position: absolute;
+    top: -0.5rem;
+    right: -1rem;
+    background-color: #ffc107;
+    color: #222;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .navigation a:last-child i {
+    font-size: 3rem; /* Cart size consistent with index.css */
+  }
+
+  .fa-cart-shopping {
+    font-size: 2rem; /* Consistent cart icon size */
+  }
+
+  /* Categories Sidebar */
+  .categories-sidebar {
+    width: 22rem; /* Adjusted for better alignment */
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 12rem; /* Adjusted for fixed navbar */
+    left: 2rem;
+  }
+
+  .categories-sidebar h3 {
+    font-size: 2rem;
+    color: #014421;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .categories-sidebar ul {
+    list-style: none;
+  }
+
+  /* Categories Sidebar */
+  .categories-sidebar .category-item {
+    display: block;
+    padding: 1rem 2rem;
+    margin: 0.5rem 0;
+    background-color: #014421; /* Default green background */
+    color: #fff; /* White text */
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  .categories-sidebar .category-item:hover {
+    background-color: #FF8C00; /* Change to orange on hover */
+  }
+
+  /* Product Container */
+  .product-container {
+    margin-left: 26rem; /* Space for sidebar */
+    margin-top: 12rem; /* Space for navbar */
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 1rem;
+  }
+
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  .product-header h2 {
+    font-size: 2.4rem;
+    color: #014421;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+  }
+
+  .sort-filter {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .sort-filter label {
+    font-size: 1.4rem;
+    color: #014421;
+    font-weight: bold;
+  }
+
+  .sort-filter select,
+  .sort-filter input {
+    font-size: 1.4rem;
+    padding: 0.5rem 1rem;
+    border: 0.1rem solid #ddd;
+    border-radius: 0.5rem;
+  }
+
+  .sort-filter button {
+    font-size: 1.4rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #014421;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .sort-filter button:hover {
+    background-color: #016b36;
+  }
+  .product-flavor {
+    width: 100%; /* Full width dropdown */
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    margin: 1rem 0; /* Space below the dropdown */
+    border: 0.1rem solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    color: #014421;
+  }
+  .product-flavor:focus {
+    border-color: #014421; /* Highlight border on focus */
+    outline: none;
+    box-shadow: 0 0 0.2rem rgba(1, 68, 33, 0.5);
+  }
+
+ /* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 2rem; /* Space between product cards */
+}
+
+/* Product Card */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute content evenly */
+  align-items: center;
+  height: 100%; /* Ensure equal height for all cards */
+  background-color: #fff;
+  border: 0.1rem solid #ddd;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.product-card:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.2);
+}
+
+/* Product Image */
+.product-card img {
+  width: 100%;
+  max-width: 15rem; /* Fixed width for consistency */
+  height: 20rem; /* Fixed height */
+  object-fit: auto; /* Crop images proportionally */
+  margin-bottom: 1rem;
+  border-radius: 0.5rem; /* Optional: Rounded corners */
+}
+
+/* Product Name */
+.product-card h4 {
+  font-size: 1.8rem; /* Uniform font size */
+  color: #333;
+  margin: 1rem 0;
+  min-height: 3rem; /* Reserve space for titles */
+}
+
+/* Product Price */
+.product-card p {
+  font-size: 1.6rem; /* Uniform font size */
+  color: #014421;
+  margin: 0.5rem 0;
+  min-height: 2rem; /* Ensure consistent spacing for price */
+}
+
+/* Product Description */
+.product-description {
+  font-size: 1.4rem;
+  color: #666;
+  margin: 1.5rem 0;
+  flex-grow: 1; /* Push buttons to the bottom */
+  min-height: 5rem; /* Reserve space for descriptions */
+}
+
+/* Flavor Dropdown */
+.product-card label {
+  font-size: 1.4rem; /* Consistent label size */
+  color: #014421;
+  margin-bottom: 0.5rem;
+  display: block; /* Ensure label appears above dropdown */
+}
+
+.product-flavor {
+  width: 100%; /* Full-width dropdown */
+  padding: 0.8rem; /* Padding for better usability */
+  font-size: 1.4rem; /* Uniform text size */
+  margin: 1.5rem 0; /* Space above and below dropdown */
+  border: 0.1rem solid #ddd;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  color: #014421;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1); /* Light shadow for better focus */
+}
+
+.product-flavor:focus {
+  border-color: #014421; /* Highlight on focus */
+  outline: none;
+  box-shadow: 0 0 0.3rem rgba(1, 68, 33, 0.5);
+}
+
+/* Product Buttons */
+.product-buttons {
+  display: flex;
+  justify-content: space-between; /* Align buttons and input horizontally */
+  align-items: center;
+  gap: 1rem; /* Space between buttons and input */
+  margin-top: 1rem; /* Space above buttons */
+}
+
+/* Quantity Input */
+.product-buttons .quantity-input {
+  width: 4rem; /* Fixed width for consistency */
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+/* Buttons */
+.product-buttons button {
+  flex: 1; /* Buttons take equal space */
+  height: 4rem; /* Uniform button height */
+  font-size: 1.3rem; /* Consistent font size */
+  padding: 0.5rem 1rem;
+  background-color: #014421;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.product-buttons button:hover {
+  background-color: #FF8C00; /* Hover effect */
+}
+
+/* Modal Styles form for ordering  */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 15px; /* Increased border-radius for smoother corners */
+  width: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly deeper shadow for emphasis */
+  text-align: left;
+}
+
+.modal-content h2 {
+  text-align: center;
+  color: #014421; /* Green for emphasis */
+  font-size: 2.4rem; /* Larger font size */
+  font-weight: bold; /* Bold for better visibility */
+  margin-bottom: 1.5rem; /* Add spacing below the title */
+  border-bottom: 2px solid #014421; /* Underline the title */
+  padding-bottom: 0.5rem; /* Space between underline and title */
+  border-radius: 5px; /* Subtle rounding if needed */
+  background-color: #f9f9f9; /* Light background for emphasis */
+}
+
+.modal-content label {
+  display: block;
+  margin: 15px 0 5px;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: bold; /* Make the label stand out */
+}
+
+/* Highlight Note */
+.modal-content .note {
+  font-size: 1.2rem; /* Slightly smaller font size for the note */
+  font-style: bold; /* Italicize for emphasis */
+  color: #666; /* Subtle dark gray color */
+  font-weight: bold; /* Make the text bold */
+  margin-top: -10px; /* Adjust spacing above the note */
+  margin-bottom: 15px; /* Add spacing below the note */
+}
+
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #014421; /* Add a green border for consistency */
+  border-radius: 10px; /* Smooth rounded corners */
+  font-size: 1.2rem;
+  background-color: #f9f9f9; /* Light background for better visibility */
+  color: #333;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background-color: #014421; /* Green button background */
+  color: white;
+  border: none;
+  border-radius: 10px; /* Smooth rounded corners */
+  font-size: 1.4rem; /* Match font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.modal-content button:hover {
+  background-color: #FF8C00; /* Change to orange on hover */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Radio Group Styling */
+.radio-group {
+  display: flex;
+  flex-direction: column; /* Stack options vertically */
+  align-items: flex-start; /* Align items to the left */
+  margin-top: 1rem;
+  gap: 1rem; /* Space between Delivery and Pickup options */
+  background-color: #f9f9f9; /* Light background for emphasis */
+  border: 2px solid #014421; /* Add a green border for highlighting */
+  padding: 1.5rem; /* Add padding for a better visual appearance */
+  border-radius: 10px; /* Smooth rounded corners */
+}
+
+.radio-item {
+  display: flex;
+  align-items: center; /* Align radio button and label vertically */
+  gap: 0.5rem; /* Space between radio button and label */
+}
+
+.radio-item label {
+  font-size: 1.4rem; /* Match the label font size */
+  color: #333;
+  font-weight: bold; /* Make the label text bold */
+}
